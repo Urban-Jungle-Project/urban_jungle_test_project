@@ -17,6 +17,7 @@ class EnvConfigName(str, Enum):
 class CommonConfigName(str, Enum):
     USER_NAME = 'user_name'
     USER_PASSWORD = 'user_password'
+    USER_TOKEN_EXPIRATION_TIME = 'user_token_expiration_time'
 
 
 class ConfigFilePath(str, Enum):

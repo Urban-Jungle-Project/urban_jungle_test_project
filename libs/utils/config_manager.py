@@ -17,3 +17,4 @@ class CommonConfig:
         self.config = ConfigReader(ConfigFilePath.COMMON)
         self.user_name = self.config.read_section(CommonConfigName.USER_NAME)
         self.user_password = self.config.read_section(CommonConfigName.USER_PASSWORD)
+        self.user_token_expiration_time = self.config.read_section(CommonConfigName.USER_TOKEN_EXPIRATION_TIME)

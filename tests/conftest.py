@@ -2,6 +2,7 @@ from pytest import fixture
 from libs.api.urban_jungle_api import UrbanJungleAPI
 from libs.utils.config_manager import EnvConfig, CommonConfig
 from libs.utils.file_manager import FileManager
+from libs.utils.misc import random_str
 from tests.constants import EnvVariableNames, EnvVariableDefaultValues
 import os
 
@@ -40,3 +41,19 @@ def check_required_env_variables():
     for variable in [ENVIRONMENT]:
         if os.getenv(variable.upper()) is None:
             raise ValueError(f"Variable {variable} not specified.")
+
+
+@fixture(scope="function")
+def user_payload():
+    def _generate_payload(**kwargs):
+        user_random_str = random_str(6)
+        user = {"password": kwargs.get('password', random_str(8)),
+                "username": kwargs.get('username', f"user {user_random_str}"),
+                "email": kwargs.get('email', f"user.test_{user_random_str}@gmail.com")}
+
+        for field in ['username', 'email', 'password']:
+            if user[field] is None:
+                user.pop(field)
+        return user
+
+    return _generate_payload

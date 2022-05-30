@@ -1,2 +1,3 @@
 user_name: inna
 user_password: foo123
+user_token_expiration_time: 20

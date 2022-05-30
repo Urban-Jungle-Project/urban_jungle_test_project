@@ -11,7 +11,7 @@ class AuthAPI(BaseAPI):
     def get_token(self):
         return self.post(f'{TOKENS_PATH}', None)
 
-    @step(f'Obtain token')
+    @step(f'Obtain new user access token')
     def obtain_token(self):
         response = self.get_token()
         return response.json()['access_token']
