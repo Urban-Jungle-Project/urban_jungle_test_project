@@ -1,5 +1,5 @@
 # Overview
-This repository contains test automation project for Urban Jungle application.
+This repository contains test automation project for Urban Jungle application https://github.com/Urban-Jungle-Project/urban_jungle_app.
 
 # Getting Started
 
