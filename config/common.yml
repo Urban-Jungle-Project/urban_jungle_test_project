@@ -1,3 +1,4 @@
-user_name: inna
+user_name: test_user
 user_password: foo123
+user_email: test_user@gmail.com
 user_token_expiration_time: 20
