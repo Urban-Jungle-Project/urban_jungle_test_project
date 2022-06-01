@@ -5,7 +5,7 @@ import pytest
 
 def test_sign_up_new_user_positive(app_api, user_payload):
     with step("Send sign up new user request"):
-        response = app_api.users.post_user(data=user_payload(), empty_auth=True)
+        response = app_api.users.post_user(data=user_payload())
     with step("Assert CREATED response code"):
         assert response.status_code == ResponseCodes.CREATED
     with step("Assert response json"):
@@ -22,7 +22,7 @@ def test_sign_up_new_user_wrong_password(password, app_api, user_payload):
     error_message = password[1]
 
     with step("Send sign up new user request"):
-        response = app_api.users.post_user(data=user_payload(password=password_str), empty_auth=True)
+        response = app_api.users.post_user(data=user_payload(password=password_str))
     with step("Assert BAD_REQUEST response code"):
         assert response.status_code == ResponseCodes.BAD_REQUEST
     with step("Assert response error message"):
@@ -38,7 +38,7 @@ def test_sign_up_new_user_wrong_username(username, app_api, user_payload):
     error_message = username[1]
 
     with step("Send sign up new user request"):
-        response = app_api.users.post_user(data=user_payload(username=username_str), empty_auth=True)
+        response = app_api.users.post_user(data=user_payload(username=username_str))
     with step("Assert BAD_REQUEST response code"):
         assert response.status_code == ResponseCodes.BAD_REQUEST
     with step("Assert response error message"):
@@ -55,7 +55,7 @@ def test_sign_up_new_user_wrong_email(email, app_api, user_payload):
     error_message = email[1]
 
     with step("Send sign up new user request"):
-        response = app_api.users.post_user(data=user_payload(email=email_str), empty_auth=True)
+        response = app_api.users.post_user(data=user_payload(email=email_str))
     with step("Assert BAD_REQUEST response code"):
         assert response.status_code == ResponseCodes.BAD_REQUEST
     with step("Assert response error message"):

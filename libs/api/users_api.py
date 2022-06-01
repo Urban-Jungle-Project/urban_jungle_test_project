@@ -1,5 +1,3 @@
-import json
-
 from libs.api.base_api import BaseAPI
 from libs.api.common.constants import ResourcePaths
 from libs.utils.allure_wrapper import step
@@ -11,8 +9,8 @@ TOKENS_PATH = ResourcePaths.TOKENS
 class UsersAPI(BaseAPI):
 
     @step(f'Send POST user request')
-    def post_user(self, data, empty_auth=False):
-        return self.post(f'{USERS_PATH}', data=data, empty_auth=empty_auth)
+    def post_user(self, data):
+        return self.post(f'{USERS_PATH}', data=data, empty_auth=True)
 
     @step(f'Send GET all users request')
     def get_users(self):
@@ -26,6 +24,3 @@ class UsersAPI(BaseAPI):
     def put_user(self, data):
         return self.put(f'{USERS_PATH}', data=data)
 
-    @step(f'Send DELETE token request')
-    def revoke_token(self):
-        return self.delete(f'{TOKENS_PATH}')
