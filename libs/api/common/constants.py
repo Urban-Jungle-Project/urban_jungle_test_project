@@ -21,6 +21,3 @@ class ErrorMessages(str, Enum):
     REQUIRED_USER_PARAMETERS_PASSWORD_RULES = 'Password must be at least 8 characters.'
     REQUIRED_USER_PARAMETERS_USER_RULES = 'Username must be at least 1 character.'
     REQUIRED_USER_PARAMETERS_VALID_EMAIL_ADDRESS = 'Please use a valid email address.'
-
-
-TOKEN_EXPIRATION_TIME: int = 20

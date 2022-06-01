@@ -4,7 +4,7 @@ import pytest
 
 from libs.api.urban_jungle_api import UrbanJungleAPI
 from libs.api.user_session import UserSession
-from libs.api.common.constants import ResponseCodes, TOKEN_EXPIRATION_TIME
+from libs.api.common.constants import ResponseCodes
 from libs.api.users_api import UsersAPI
 from libs.utils.allure_wrapper import step
 from pytest import fixture
@@ -26,7 +26,7 @@ def app_api(env_config, common_config):
     return api
 
 
-def test_get_token_for_correct_credentials(user_session):
+def test_get_token_for_correct_credentials(user_session, common_config):
     with step("Obtain user access token for correct credentials"):
         response = user_session.get_token()
     with step("Assert SUCCESS response code"):
@@ -34,7 +34,7 @@ def test_get_token_for_correct_credentials(user_session):
     with step("Assert response json"):
         response_json = response.json()
         assert response_json['token_type'] == 'Bearer'
-        assert response_json['expires_in'] == TOKEN_EXPIRATION_TIME
+        assert response_json['expires_in'] == common_config.user_token_expiration_time
         assert response_json['access_token'] is not None
 
 
@@ -65,7 +65,7 @@ def test_get_token_with_wrong_header(env_config, common_config):
         assert 'access_token' not in response_json.keys()
 
 
-def test_renew_token(user_session):
+def test_renew_token(user_session, common_config):
     with step("Obtain new user access token"):
         user_session.get_token()
         original_token = user_session.token
@@ -76,7 +76,7 @@ def test_renew_token(user_session):
     with step("Assert response json"):
         response_json = response.json()
         assert response_json['access_token'] != original_token
-        assert response_json['expires_in'] == TOKEN_EXPIRATION_TIME
+        assert response_json['expires_in'] == common_config.user_token_expiration_time
 
 
 def test_revoke_token(app_api):
