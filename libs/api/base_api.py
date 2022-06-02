@@ -1,6 +1,9 @@
 import json
 from requests import post, get, put, delete
 
+from libs.api.common.constants import ResponseCodes
+from libs.utils.allure_wrapper import step
+
 
 class BaseAPI:
     def __init__(self, **kwargs):
@@ -20,3 +23,7 @@ class BaseAPI:
 
     def delete(self, endpoint):
         return delete(f'{self.base_url}/{endpoint}', headers=self.headers)
+
+    @step("Assert status code")
+    def assert_status_code(self, response, expected=ResponseCodes.SUCCESS):
+        assert response.status_code == expected
