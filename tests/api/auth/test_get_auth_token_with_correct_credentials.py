@@ -3,6 +3,7 @@ from libs.utils.allure_wrapper import step
 
 
 def test_get_auth_token_with_correct_credentials(user_session, common_config):
+
     with step("Obtain user access token for correct credentials"):
         response = user_session.get_token()
     with step("Assert SUCCESS response code"):

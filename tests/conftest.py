@@ -1,5 +1,6 @@
 from pytest import fixture
 from libs.api.urban_jungle_api import UrbanJungleAPI
+from libs.api.user_session import UserSession
 from libs.utils.config_manager import EnvConfig, CommonConfig
 from libs.utils.file_manager import FileManager
 from libs.utils.misc import random_str
@@ -24,10 +25,20 @@ def common_config():
 
 
 @fixture(scope="session")
-def app_api(env_config, common_config):
-    api = UrbanJungleAPI(env_config.base_api_url, user={"username": common_config.user_name,
-                                                        "password": common_config.user_password})
-    return api
+def predefined_user(env_config, common_config):
+    return {"username": common_config.user_name,
+            "password": common_config.user_password,
+            "email": common_config.user_email}
+
+
+@fixture(scope="function")
+def user_session(env_config, predefined_user):
+    return UserSession(base_url=env_config.base_api_url, user=predefined_user)
+
+
+@fixture(scope="session")
+def urban_jungle_api(env_config, predefined_user):
+    return UrbanJungleAPI(env_config.base_api_url, user=predefined_user)
 
 
 @fixture(autouse=True, scope="session")

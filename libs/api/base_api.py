@@ -8,10 +8,8 @@ class BaseAPI:
         self.base_url = self.user_session.base_url
         self.headers = self.user_session.headers
 
-    def post(self, endpoint, data, empty_auth=False):
-        response = post(f'{self.base_url}/{endpoint}',
-                        headers=({'Content-Type': 'application/json'}if empty_auth else self.headers),
-                        data=json.dumps(data))
+    def post(self, endpoint, data):
+        response = post(f'{self.base_url}/{endpoint}',headers=self.headers, data=json.dumps(data))
         return response
 
     def get(self, endpoint):

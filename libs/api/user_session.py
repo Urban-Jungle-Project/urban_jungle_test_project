@@ -14,6 +14,7 @@ class UserSession:
         self.base_url = base_url
         self.token = kwargs.get('token', None)
         self.user = kwargs.get('user', None)
+        self.email = kwargs.get('email', None)
         self.headers = kwargs.get('headers', {'Content-Type': 'application/json'})
 
     @step(f'Send GET token request')

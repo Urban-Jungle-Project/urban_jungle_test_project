@@ -4,6 +4,7 @@ from libs.utils.allure_wrapper import step
 
 
 def test_get_auth_token_with_wrong_credentials(env_config, common_config):
+
     with step("Obtain user access token for wrong credentials"):
         user_session = UserSession(base_url=env_config.base_api_url,
                                    user={"username": common_config.user_name,

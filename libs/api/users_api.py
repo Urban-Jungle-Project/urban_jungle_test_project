@@ -10,7 +10,7 @@ class UsersAPI(BaseAPI):
 
     @step(f'Send POST user request')
     def post_user(self, data):
-        return self.post(f'{USERS_PATH}', data=data, empty_auth=True)
+        return self.post(f'{USERS_PATH}', data=data)
 
     @step(f'Send GET all users request')
     def get_users(self):

@@ -11,6 +11,7 @@ from libs.utils.allure_wrapper import step
                                       'Authorization': 'Bearer D5Oa7MX80+ou2AT1JGRY5r/X9CKkOt03'}],
                          ids=['missing authorization header ', 'wrong auth header'])
 def test_auth_with_wrong_auth_header(env_config, headers):
+
     with step("Send request with empty auth token"):
         user_session = UserSession(base_url=env_config.base_api_url,
                                    headers=headers)
